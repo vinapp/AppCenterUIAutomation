@@ -36,25 +36,40 @@ public class ServerUtil {
 
 	public ServerUtil() {
 		properties = new Properties();
-		InputStream is = ClassLoader.getSystemResourceAsStream("datafile.properties");
-		try {
-			properties.load(is);
-			protocol = properties.getProperty("protocol");
-			host = properties.getProperty("hostname");
-			port = Integer.valueOf(properties.getProperty("port"));
-			context = properties.getProperty("context");
-			username = properties.getProperty("username");
-			password = properties.getProperty("password");
-			absoluteurl = properties.getProperty("absoluteurl");
-			sampleuploadfile = properties.getProperty("uploadfile");
-			mobcontext = properties.getProperty("mobcontext");
-			chromedriverpath = properties.getProperty("chromedriverpath");
-			firefoxdriverpath = properties.getProperty("firefoxdriverpath");
-			appcenterclientapppath = properties.getProperty("appcenterclientapppath");
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
+		if (System.getProperty("datafile").equals("true")) {
+			protocol = System.getProperty("protocol"); //Passed as a part of the command line as -Doption
+			host = System.getProperty("hostname");
+			port = Integer.valueOf(System.getProperty("port"));
+			context = System.getProperty("context");
+			username = System.getProperty("username");
+			password = System.getProperty("password");
+			absoluteurl = System.getProperty("absoluteurl");
+			sampleuploadfile = System.getProperty("uploadfile");
+			mobcontext = System.getProperty("mobcontext");
+			chromedriverpath = System.getProperty("chromedriverpath");
+			firefoxdriverpath = System.getProperty("firefoxdriverpath");
+			appcenterclientapppath = System.getProperty("appcenterclientapppath");
+		} else {
+			InputStream is = ClassLoader.getSystemResourceAsStream("datafile.properties");
+			try {
+				properties.load(is);
+				protocol = properties.getProperty("protocol");
+				host = properties.getProperty("hostname");
+				port = Integer.valueOf(properties.getProperty("port"));
+				context = properties.getProperty("context");
+				username = properties.getProperty("username");
+				password = properties.getProperty("password");
+				absoluteurl = properties.getProperty("absoluteurl");
+				sampleuploadfile = properties.getProperty("uploadfile");
+				mobcontext = properties.getProperty("mobcontext");
+				chromedriverpath = properties.getProperty("chromedriverpath");
+				firefoxdriverpath = properties.getProperty("firefoxdriverpath");
+				appcenterclientapppath = properties.getProperty("appcenterclientapppath");
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
 
+			}
 		}
 	}
 

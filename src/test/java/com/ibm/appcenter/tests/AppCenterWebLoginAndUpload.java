@@ -27,14 +27,9 @@ public class AppCenterWebLoginAndUpload {
 	    public ServerUtil serverutil;
 	    public WebDriverWait wait;
 
-	    @Parameters({"skipTestNGParms", "username", "password", "absoluteurl", "uploadfile","context","mobcontext","port","portocol","hostname","chromedriverpath","firefoxdriverpath","appcenterclientapppath"})
 	    @BeforeClass
-		void setup(boolean skipTestNGParms, String pUsername, String pPassword, String pAbsoluteurl, String pUploadfile, String pContext, String pMobcontext, String pPort, String pProtocol, String pHostname, String pChromedriverpath, String pFirefoxdriverpath, String pAppcenterclientapppath) throws MalformedURLException {
+		void setup() throws MalformedURLException {
 	        serverutil = ServerUtil.getInstance();
-	        //override the values
-	        if (skipTestNGParms == false) {
-		        serverutil.setProperties(pUsername, pPassword, pAbsoluteurl, pUploadfile, pContext, pMobcontext, pPort, pProtocol, pHostname, pChromedriverpath, pFirefoxdriverpath, pAppcenterclientapppath);
-	        }
 	        File file = new File(serverutil.getChoromeDriverPath());
 			System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
 		    driver = new ChromeDriver();

@@ -25,17 +25,10 @@ public class AppCenterClientLogin {
 	    public ServerUtil serverutil;
 	    public WebDriverWait wait;
 
-	    @Parameters({"skipTestNGParms", "username", "password", "absoluteurl", "uploadfile","context","mobcontext","port","portocol","hostname","chromedriverpath","firefoxdriverpath","appcenterclientapppath"})
 	    @BeforeClass
-		void setup(boolean skipTestNGParms, String pUsername, String pPassword, String pAbsoluteurl, String pUploadfile, String pContext, String pMobcontext, String pPort, String pProtocol, String pHostname, String pChromedriverpath, String pFirefoxdriverpath, String pAppcenterclientapppath) throws MalformedURLException {
+		void setup() throws MalformedURLException {
 	        serverutil = ServerUtil.getInstance();
-	        System.out.println("AppCenterClientLogin.setup(skipTestNGParms) "+ skipTestNGParms);
 	        System.out.println("AppCenterClientLogin.setup(getAppCenterClientPath) "+ serverutil.getAppCenterClientPath());
-	        if (skipTestNGParms == false) {
-		        serverutil.setProperties(pUsername, pPassword, pAbsoluteurl, pUploadfile, pContext, pMobcontext, pPort, pProtocol, pHostname, pChromedriverpath, pFirefoxdriverpath, pAppcenterclientapppath);
-	        }
-	        System.out.println("AppCenterClientLogin.setup(getAppCenterClientPath1) "+ serverutil.getAppCenterClientPath());
-
 	    	DesiredCapabilities capabilities = new DesiredCapabilities();
 			//capabilities.setCapability("appium-version", "1.0");
 			capabilities.setCapability("automationName", "XCUITest");
