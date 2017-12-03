@@ -27,9 +27,9 @@ public class AppCenterClientLogin {
 
 	    @BeforeClass
 		void setup() throws MalformedURLException {
-	    serverutil = ServerUtil.getInstance();
-	    System.out.println("AppCenterClientLogin.setup(getAppCenterClientPath) "+ serverutil.getAppCenterClientPath());
-	    DesiredCapabilities capabilities = new DesiredCapabilities();
+	        serverutil = ServerUtil.getInstance();
+	        System.out.println("AppCenterClientLogin.setup(getAppCenterClientPath) "+ serverutil.getAppCenterClientPath());
+	    	DesiredCapabilities capabilities = new DesiredCapabilities();
 			//capabilities.setCapability("appium-version", "1.0");
 			capabilities.setCapability("automationName", "XCUITest");
 			capabilities.setCapability("platformName", "iOS");
@@ -89,5 +89,6 @@ public class AppCenterClientLogin {
 			} else {
 				AssertJUnit.assertEquals(1, 0);//fail the case
 			}
+			driver.close();
 		}
 }
