@@ -36,7 +36,7 @@ public class ServerUtil {
 
 	public ServerUtil() {
 		properties = new Properties();
-		if (System.getProperty("datafile").equals("true")) {
+		if (System.getProperty("datafile")!=null && System.getProperty("datafile").equals("true")) {
 			protocol = System.getProperty("protocol"); //Passed as a part of the command line as -Doption
 			host = System.getProperty("hostname");
 			port = Integer.valueOf(System.getProperty("port"));
