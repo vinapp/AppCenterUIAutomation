@@ -58,6 +58,22 @@ public class ServerUtil {
 		}
 	}
 
+	public ServerUtil setProperties(String pUsername, String pPassword, String pAbsoluteurl, String pUploadfile, String pContext, String pMobcontext, String pPort, String pProtocol, String pHostname, String pChromedriverpath, String pFirefoxdriverpath, String pAppcenterclientapppath) {
+		protocol = pProtocol;
+		host = pHostname;
+		port = Integer.valueOf(pPort);
+		context = pContext;
+		username = pUsername;
+		password = pPassword;
+		absoluteurl = pAbsoluteurl;
+		sampleuploadfile = pUploadfile;
+		mobcontext = pMobcontext;
+		chromedriverpath = pChromedriverpath;
+		firefoxdriverpath = pFirefoxdriverpath;
+		appcenterclientapppath = pAppcenterclientapppath;
+		return instance;
+	}
+
 	public static ServerUtil getInstance() {
 		return instance;
 	}
@@ -77,7 +93,7 @@ public class ServerUtil {
 	public String getContext() {
 		return context;
 	}
-	
+
 	public String getMobContext() {
 		return mobcontext;
 	}
@@ -89,27 +105,27 @@ public class ServerUtil {
 	public String getPassword() {
 		return password;
 	}
-	
+
 	public String getAbsoluteurl() {
 		return absoluteurl;
 	}
-	
+
 	public String getSampleUploadFile() {
 		return sampleuploadfile;
 	}
-	
+
 	public String getFirefoxDriverPath() {
 		return firefoxdriverpath;
 	}
-	
+
 	public String getChoromeDriverPath() {
 		return chromedriverpath;
 	}
-	
+
 	public String getAppCenterClientPath() {
 		return appcenterclientapppath;
 	}
-	
+
 	public String getbase64EncodedCredentials() {
 		return "Basic " + new String(Base64.encodeBase64(
                 (username + ":" + password).getBytes()));
