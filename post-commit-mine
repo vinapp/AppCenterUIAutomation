@@ -1,0 +1,5 @@
+#!/bin/sh
+
+curl --user admin:10e9fea73c6d0d54ae94ef517c25c823 http://localhost:8080/job/AppCenterUIAutomation/build?token=AppCenterUIAutomationToken
+
+echo "Jenkins build using external script"
