@@ -12,12 +12,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.ibm.appcenter.tests.utils.ServerUtil;
 
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
 
 public class AppCenterClientLogin {
 
@@ -39,7 +39,10 @@ public class AppCenterClientLogin {
 			//*********Change this to point to your path*********//
 			capabilities.setCapability("app", serverutil.getAppCenterClientPath());
 			driver = new IOSDriver<WebElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-			wait = new WebDriverWait(driver, 15);
+			//un-install and install the app before the test
+			capabilities.setCapability("full-reset", false);
+            capabilities.setCapability("no-reset", true);
+            wait = new WebDriverWait(driver, 15);
 		}
 
 		@AfterClass
@@ -89,6 +92,5 @@ public class AppCenterClientLogin {
 			} else {
 				AssertJUnit.assertEquals(1, 0);//fail the case
 			}
-			driver.close();
 		}
 }
