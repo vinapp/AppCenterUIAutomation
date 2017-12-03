@@ -73,7 +73,7 @@ public class AppCenterClientLogin {
 
 			driver.findElement(By.xpath("//XCUIElementTypeButton[@name='Log in']")).click();
 			WebElement alertElement =
-				    new WebDriverWait(driver, 15).until(
+				    new WebDriverWait(driver, 60).until(
 				    ExpectedConditions.presenceOfElementLocated(By.xpath("//XCUIElementTypeAlert[@visible='true']")));
 
 			//*********If notification is enabled you will get the popup*********//
