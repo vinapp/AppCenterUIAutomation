@@ -38,10 +38,10 @@ public class AppCenterClientLogin {
 			capabilities.setCapability("deviceName", "iPhone Simulator");
 			//*********Change this to point to your path*********//
 			capabilities.setCapability("app", serverutil.getAppCenterClientPath());
-			driver = new IOSDriver<WebElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 			//un-install and install the app before the test
 			capabilities.setCapability("full-reset", false);
             capabilities.setCapability("no-reset", true);
+			driver = new IOSDriver<WebElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
             wait = new WebDriverWait(driver, 15);
 		}
 
