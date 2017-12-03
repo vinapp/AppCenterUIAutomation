@@ -1,4 +1,4 @@
-package com.ibm.appcenter.tests;		
+package com.ibm.appcenter.tests;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -12,21 +12,26 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.AssertJUnit;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.ibm.appcenter.tests.utils.ServerUtil;
 
-import io.appium.java_client.ios.IOSDriver;	
+import io.appium.java_client.ios.IOSDriver;
 
-public class AppCenterClientLogin {		
-		
+public class AppCenterClientLogin {
+
 		public WebDriver driver;
 	    public ServerUtil serverutil;
 	    public WebDriverWait wait;
-	
+
+	    @Parameters({"skipTestNGParms", "username", "password", "absoluteurl", "uploadfile","context","mobcontext","port","portocol","hostname","chromedriverpath","firefoxdriverpath","appcenterclientapppath"})
 	    @BeforeClass
-		public void setup() throws MalformedURLException {
-	    	serverutil = ServerUtil.getInstance();
+		void setup(boolean skipTestNGParms, String pUsername, String pPassword, String pAbsoluteurl, String pUploadfile, String pContext, String pMobcontext, String pPort, String pProtocol, String pHostname, String pChromedriverpath, String pFirefoxdriverpath, String pAppcenterclientapppath) throws MalformedURLException {
+	        serverutil = ServerUtil.getInstance();
+	        if (skipTestNGParms == false) {
+		        serverutil.setProperties(pUsername, pPassword, pAbsoluteurl, pUploadfile, pContext, pMobcontext, pPort, pProtocol, pHostname, pChromedriverpath, pFirefoxdriverpath, pAppcenterclientapppath);
+	        }
 	    	DesiredCapabilities capabilities = new DesiredCapabilities();
 			//capabilities.setCapability("appium-version", "1.0");
 			capabilities.setCapability("automationName", "XCUITest");
@@ -39,46 +44,46 @@ public class AppCenterClientLogin {
 			driver = new IOSDriver<WebElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 			wait = new WebDriverWait(driver, 15);
 		}
-		
+
 		@AfterClass
 		public void teardown() {
-			driver.quit();	
+			driver.quit();
 		}
-		
-	    @Test				
-		public void loginMobileClientAppCenter() {	
-			
+
+	    @Test
+		public void loginMobileClientAppCenter() {
+
 	    	//*********Enter the login details and login*********//
 			WebElement userField = driver.findElement(By.xpath("//XCUIElementTypeTextField[@value='User name']"));
 			userField.click();
 			userField.sendKeys(serverutil.getUsername());
-			
+
 			WebElement passwordField = driver.findElement(By.xpath("//XCUIElementTypeSecureTextField[@value='Password']"));
 			passwordField.click();
 			passwordField.sendKeys(serverutil.getPassword());
-			
+
 			WebElement hostField = driver.findElement(By.xpath("//XCUIElementTypeTextField[@value='Host name or IP']"));
 			hostField.click();
 			hostField.sendKeys(serverutil.getHost());
-			
+
 			WebElement portField = driver.findElement(By.xpath("//XCUIElementTypeTextField[@value='Server port']"));
 			portField.click();
 			portField.sendKeys(""+ serverutil.getPort() + "");
-			
+
 			WebElement contextField = driver.findElement(By.xpath("//XCUIElementTypeTextField[@value='Application context']"));
 			contextField.click();
 			contextField.sendKeys(serverutil.getMobContext());
-			
+
 			driver.findElement(By.xpath("//XCUIElementTypeButton[@name='Log in']")).click();
 			WebElement alertElement =
 				    new WebDriverWait(driver, 15).until(
 				    ExpectedConditions.presenceOfElementLocated(By.xpath("//XCUIElementTypeAlert[@visible='true']")));
-			
+
 			//*********If notification is enabled you will get the popup*********//
-			if (alertElement.isDisplayed()) {	
+			if (alertElement.isDisplayed()) {
 				driver.switchTo().alert().accept();
 			}
-			
+
 			//*********Catalog: Displaying the apps*********//
 			WebElement catalogElement = wait.until(
 				    ExpectedConditions.presenceOfElementLocated(By.xpath("//XCUIElementTypeStaticText[@name='Catalog']")));

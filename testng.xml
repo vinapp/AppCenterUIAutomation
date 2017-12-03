@@ -2,6 +2,19 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
   <test name="Test" preserve-order="true">
+    <parameter name="skipTestNGParms" value="true"/>
+    <parameter name="username" value=""/>
+    <parameter name="password" value=""/>   
+    <parameter name="absoluteurl" value=""/>
+    <parameter name="uploadfile" value=""/>
+    <parameter name="context" value=""/>
+    <parameter name="mobcontext" value=""/>
+    <parameter name="port" value=""/>
+    <parameter name="portocol" value=""/>
+    <parameter name="hostname" value=""/>
+    <parameter name="chromedriverpath" value=""/>
+    <parameter name="firefoxdriverpath" value=""/>
+    <parameter name="appcenterclientapppath" value=""/>
     <classes>
 		  <!-- <class name="com.ibm.appcenter.tests.AppCenterWebLoginAndUpload"/> -->
           <class name="com.ibm.appcenter.tests.AppCenterClientLogin"/>
